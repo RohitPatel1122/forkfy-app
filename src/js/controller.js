@@ -3,12 +3,12 @@ import "regenerator-runtime/runtime";
 import icons from "url:../img/icons.svg";
 import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
-const recipeContainer = document.querySelector(".recipe");
-
+import searchRecipeView from "./views/searchRecipeView.js";
+import searchBarView from "./views/searchBarView.js";
+import paginationView from "./views/paginationView.js";
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
-console.log("Starting fecth of recipe");
 
 const controlRecipes = async function () {
   try {
@@ -24,7 +24,29 @@ const controlRecipes = async function () {
     recipeView.renderError();
   }
 };
+const constrolSearchRecipes = async function () {
+  try {
+    searchRecipeView.renderSpinner();
+    const query = searchBarView.getQuery();
+    if (!query) return;
+    await model.loadSearchResult(query);
+    searchRecipeView.render(model.getSearchResultForPage());
+    paginationView.render(model.state.search);
+  } catch (error) {
+    searchRecipeView.renderError();
+  }
+};
+const controlPagination = function (gotoPage) {
+  try {
+    searchRecipeView.render(model.getSearchResultForPage(gotoPage));
+    paginationView.render(model.state.search);
+  } catch (error) {
+    searchRecipeView.renderError();
+  }
+};
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  searchBarView.addHandlerSearch(constrolSearchRecipes);
+  paginationView.addHandlerPagination(controlPagination);
 };
 init();
