@@ -13,11 +13,12 @@ import paginationView from "./views/paginationView.js";
 const controlRecipes = async function () {
   try {
     const recipeId = window.location.hash.slice(1);
-    console.log(recipeId);
+    // console.log(recipeId);
     if (!recipeId) return;
     recipeView.renderSpinner();
     //fetch recipe
     await model.loadRecipe(recipeId);
+    searchRecipeView.update(model.getSearchResultForPage());
     //Render receipe
     recipeView.render(model.state.recipe);
   } catch (error) {
@@ -48,7 +49,7 @@ const controlUpdateServings = function (newServings) {
   //update serving
   model.updateServings(newServings);
   // re-render the view
-  recipeView.render(model.state.recipe);
+  recipeView.update(model.state.recipe);
 };
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);

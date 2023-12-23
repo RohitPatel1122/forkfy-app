@@ -6,12 +6,16 @@ class SearchRecipeView extends View {
     "We could not find the recipe with this keyword. Please try another keyword like pizza. !";
   _message = "";
   _generateMarkup() {
+    const id = window.location.hash.slice(1);
     return this._data
       .map(
         (recipe) =>
           `
         <li class="preview">
-            <a class="preview__link preview__link--active" href="#${recipe.id}">
+            <a class="preview__link ${
+              recipe.id === id ? "preview__link--active" : ""
+            }"
+             href="#${recipe.id}">
                 <figure class="preview__fig">
                 <img src="${recipe.image}" alt="${recipe.title}" />
                 </figure>

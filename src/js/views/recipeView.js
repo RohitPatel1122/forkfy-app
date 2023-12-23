@@ -124,9 +124,7 @@ class RecipeView extends View {
     this._parentElement.addEventListener("click", function (ev) {
       const btn = ev.target.closest(".btn--tiny");
       if (!btn) return;
-      console.log(btn);
       const newServingValue = +btn.dataset.updateservings;
-      console.log(newServingValue);
       if (+newServingValue > 0) handler(+newServingValue);
     });
   }
