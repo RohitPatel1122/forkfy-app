@@ -1,18 +1,15 @@
-# Forkify
+# Forkify 
 
-<br />
-![Demo App](./src/img/demo-app.png)
 <p align="center">
-    
-  </a>
-
-  <p align="center">
-    Application to Search Food recipe made with javascript.
-    <br />
-    <br />
-    <br />
-    <a href="https://forkfy-app.netlify.app/">View Demo</a>
+     Application to Search Food recipe made with javascript. <a href="https://forkfy-app.netlify.app/">View Demo</a>
   </p>
+  
+<br />
+
+<p align="center">
+<img width="1727" alt="Screenshot 2023-12-24 at 3 05 33 PM" src="https://github.com/RohitPatel1122/forkify-app/assets/30955184/5a1aed4f-67ce-4dee-a169-ce73af0dd679">
+<br />
+  
 </p>
 
 ## About The Project
