@@ -6,10 +6,19 @@ const timeout = function (s) {
     }, s * 1000);
   });
 };
-export const getJSON = async function (url) {
+export const AJAX = async function (url, payload = undefined) {
   try {
+    const fetchPromise = payload
+      ? fetch(url, {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      : fetch(url);
     const response = await Promise.race([
-      fetch(url),
+      fetchPromise,
       timeout(API_TIMEOUT_IN_SEC),
     ]);
     const data = await response.json();
@@ -21,3 +30,42 @@ export const getJSON = async function (url) {
     throw error;
   }
 };
+
+// export const getJSON = async function (url) {
+//   try {
+//     const response = await Promise.race([
+//       fetch(url),
+//       timeout(API_TIMEOUT_IN_SEC),
+//     ]);
+//     const data = await response.json();
+//     if (!response.ok) {
+//       throw new Error(`${data.message} ${response.status}`);
+//     }
+//     return data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+// export const sendJSON = async function (url, payload) {
+//   try {
+//     const options = {
+//       method: "POST",
+//       body: JSON.stringify(payload),
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     };
+//     const response = await Promise.race([
+//       fetch(url, options),
+//       timeout(API_TIMEOUT_IN_SEC),
+//     ]);
+//     const data = await response.json();
+//     if (!response.ok) {
+//       throw new Error(`${data.message} ${response.status}`);
+//     }
+//     return data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
