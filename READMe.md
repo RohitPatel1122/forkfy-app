@@ -1,8 +1,9 @@
 # Forkify
 
 <br />
+![Demo App](./src/img/demo-app.png)
 <p align="center">
-    ![Demo App](./src/img/demo-app.png)
+    
   </a>
 
   <p align="center">
