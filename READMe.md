@@ -2,7 +2,7 @@
 
 <br />
 <p align="center">
-    <img src="/src/img/logo.png?raw=true" width="100%" height="100%">
+    ![Demo App](./src/img/demo-app.png)
   </a>
 
   <p align="center">
